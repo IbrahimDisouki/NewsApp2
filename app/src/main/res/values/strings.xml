@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NewsApp2</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="articles_fragment_label">Articles Fragment</string>
+    <string name="article_details_fragment_label">Article Details Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello Articles fragment</string>
+    <string name="hello_second_fragment">Hello Article Details fragment. Arg: %1$s</string>
+</resources>
