@@ -57,6 +57,16 @@ android {
 }
 
 dependencies {
+    testImplementation("org.orbit-mvi:orbit-test:4.3.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("org.junit.platform:junit-platform-console:1.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("org.mockito:mockito-inline:4.0.0")
+    testImplementation("com.appmattus.fixture:fixture:1.2.0")
+
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
@@ -72,20 +82,10 @@ dependencies {
     implementation("org.orbit-mvi:orbit-core:4.3.0")
     implementation("org.orbit-mvi:orbit-viewmodel:4.3.0")
 
-    implementation("io.ktor:ktor-client-android:1.5.0")
-    implementation("io.ktor:ktor-client-serialization:1.5.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
-    implementation("io.ktor:ktor-client-logging-jvm:1.5.0")
+    implementation("io.ktor:ktor-client-serialization:1.6.7")
+    implementation("io.ktor:ktor-client-logging-jvm:1.6.7")
+    implementation("io.ktor:ktor-client-okhttp:1.6.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
     implementation("io.coil-kt:coil:1.4.0")
-
-    testImplementation("org.orbit-mvi:orbit-test:4.3.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-    testImplementation("org.junit.platform:junit-platform-console:1.8.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
-    testImplementation("org.mockito:mockito-inline:4.0.0")
-    testImplementation("com.appmattus.fixture:fixture:1.2.0")
 }

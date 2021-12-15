@@ -9,6 +9,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Parcelize
 data class ApiResponse(
-    @SerialName("status") val status: String,
-    @SerialName("articles") val articles: @RawValue List<Article>
+    @SerialName("status") val status: String? = null,
+    @SerialName("totalResults") val totalResults: Int? = null,
+    @SerialName("code") val code: String? = null,
+    @SerialName("message") val message: String? = null,
+    @SerialName("articles") val articles: @RawValue List<Article>? = null
 ) : Parcelable

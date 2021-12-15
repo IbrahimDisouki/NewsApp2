@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
-import io.ktor.client.engine.android.*
+import io.ktor.client.engine.okhttp.*
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
@@ -19,20 +19,27 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
     @Provides
     @Singleton
-    fun provideHttpClient() = HttpClient(Android) {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-            })
+    fun provideJsonSerializer(): JsonSerializer {
+        return KotlinxSerializer(kotlinx.serialization.json.Json {
+            prettyPrint = true
+            isLenient = true
+            ignoreUnknownKeys = true
+        })
+    }
 
-            engine {
-                connectTimeout = 60_000
-                socketTimeout = 60_000
-            }
+    @Provides
+    @Singleton
+    fun provideHttpClient(jsonSerializer: JsonSerializer) = HttpClient(OkHttp) {
+        install(JsonFeature) {
+            serializer = jsonSerializer
+        }
+
+        engine {
+            addInterceptor { chain -> chain.proceed(chain.request()) }
+            addNetworkInterceptor { chain -> chain.proceed(chain.request()) }
         }
 
         install(Logging) {
@@ -51,8 +58,19 @@ object AppModule {
             }
         }
 
-        install(DefaultRequest) {
+        defaultRequest {
+            timeout {
+                connectTimeoutMillis = 60_000
+                socketTimeoutMillis = 60_000
+            }
+
             header(HttpHeaders.ContentType, ContentType.Application.Json)
+            url {
+                protocol = URLProtocol.HTTPS
+                host = "newsapi.org/v2"
+            }
+            parameter("apiKey", "55a2e462674d42a6864be1fe0e962b9a")
         }
+
     }
 }
