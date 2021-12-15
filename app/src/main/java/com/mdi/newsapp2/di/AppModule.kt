@@ -37,11 +37,6 @@ object AppModule {
             serializer = jsonSerializer
         }
 
-        engine {
-            addInterceptor { chain -> chain.proceed(chain.request()) }
-            addNetworkInterceptor { chain -> chain.proceed(chain.request()) }
-        }
-
         install(Logging) {
             logger = object : Logger {
                 override fun log(message: String) {
